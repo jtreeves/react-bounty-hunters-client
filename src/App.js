@@ -13,17 +13,21 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            bounties: []
+            bounties: [],
+            finishedLoading: false
         }
     }
 
     async componentDidMount() {
         const response = await fetch('http://localhost:3001/bounties')
         const json = await response.json()
-        this.setState({bounties: json.bounties})
+        this.setState({bounties: json.bounties, finishedLoading: true})
     }
     
     render() {
+        if (this.state.bounties.length === 0) {
+            return <div>Loading...</div>
+        }
         return (
             <div className='App'>
                 <Nav />
