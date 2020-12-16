@@ -10,13 +10,9 @@ class New extends Component {
             wantedFor: ''
         }
     }
-    
-    setName = (e) => {
-        this.setState({name: e.target.value})
-    }
 
-    setWantedFor = (e) => {
-        this.setState({wantedFor: e.target.value})
+    handleInput = (e) => {
+        this.setState({[e.target.name]: e.target.value})
     }
 
     render() {
@@ -27,13 +23,13 @@ class New extends Component {
                     labelLink='name'
                     displayLabel='Name'
                     value={this.state.name}
-                    handler={this.setName}
+                    handler={this.handleInput}
                 />
                 <FormField
                     labelLink='wantedFor'
                     displayLabel='Wanted For'
                     value={this.state.wantedFor}
-                    handler={this.setWantedFor}
+                    handler={this.handleInput}
                 />
             </div>
         )
