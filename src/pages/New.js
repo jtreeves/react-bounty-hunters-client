@@ -7,12 +7,25 @@ class New extends Component {
         super(props)
         this.state = {
             name: '',
-            wantedFor: ''
+            wantedFor: '',
+            client: '',
+            reward: '',
+            lastSeen: ''
         }
     }
 
     handleInput = (e) => {
         this.setState({[e.target.name]: e.target.value})
+    }
+
+    submitForm = () => {
+        fetch('http://localhost:3001/bounties', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then(res)
     }
 
     render() {
@@ -30,6 +43,42 @@ class New extends Component {
                     displayLabel='Wanted For'
                     value={this.state.wantedFor}
                     handler={this.handleInput}
+                />
+                <FormField
+                    labelLink='client'
+                    displayLabel='Client'
+                    value={this.state.client}
+                    handler={this.handleInput}
+                />
+                <FormField
+                    labelLink='reward'
+                    displayLabel='Reward'
+                    value={this.state.reward}
+                    handler={this.handleInput}
+                />
+                {/* <p>Comma separate values, please</p>
+                <FormField
+                    labelLink='hunters'
+                    displayLabel='Hunters'
+                    value={this.state.hunters}
+                    handler={this.handleInput}
+                /> */}
+                {/* <FormField
+                    labelLink='captured'
+                    displayLabel='Captured'
+                    value={this.state.captured}
+                    handler={this.handleInput}
+                /> */}
+                <FormField
+                    labelLink='lastSeen'
+                    displayLabel='Last Seen'
+                    value={this.state.lastSeen}
+                    handler={this.handleInput}
+                />
+                <input
+                    type='submit'
+                    onClick={this.submitForm}
+                    value='Create!'
                 />
             </div>
         )
