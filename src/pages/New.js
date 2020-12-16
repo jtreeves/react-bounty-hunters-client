@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
 import FormField from '../components/FormField'
 
@@ -25,7 +26,12 @@ class New extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
-        }).then(res)
+        }).then((res) => {
+            res.json().then((json) => {
+                this.props.reload()
+                this.props.history.push(`/show/${json.bounty._id}`)
+            })
+        })
     }
 
     render() {
@@ -85,4 +91,4 @@ class New extends Component {
     }
 }
 
-export default New
+export default withRouter(New)
