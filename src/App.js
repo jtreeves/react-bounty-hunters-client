@@ -25,8 +25,11 @@ class App extends Component {
     }
     
     render() {
-        if (this.state.bounties.length === 0) {
+        if (!this.state.finishedLoading) {
             return <div>Loading...</div>
+        }
+        if (this.state.bounties.length === 0) {
+            return <div>No bounties to show!</div>
         }
         return (
             <div className='App'>
