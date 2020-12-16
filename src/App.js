@@ -31,9 +31,15 @@ class App extends Component {
                 <Route exact path='/'>
                     <Home bounties={this.state.bounties}/>
                 </Route>
-                <Route path='/show/:id'>
-                    <Show />
-                </Route>
+                <Route
+                    path='/show/:id'
+                    render={(routeProps) => {
+                        const bounty = this.state.bounties.find((b) => {
+                            return b._id === routeProps.match.params.id
+                        })
+                        return <Show bounty={bounty} />
+                    }}
+                />
                 <Route path='/new'>
                     <New />
                 </Route>
