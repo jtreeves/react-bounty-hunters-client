@@ -10,6 +10,19 @@ import Nav from './components/Nav'
 import './App.css'
 
 class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            bounties: []
+        }
+    }
+
+    async componentDidMount() {
+        const response = await fetch('http://localhost:3001/bounties')
+        const json = await response.json()
+        console.log(json)
+    }
+    
     render() {
         return (
             <div className='App'>
