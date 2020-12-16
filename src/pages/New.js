@@ -13,12 +13,7 @@ class New extends Component {
             <div>
                 <h1>Create a new bounty</h1>
                 <div>
-                    <form>
-                        <label htmlFor='name'>Name: </label>
-                        <input name='name' value={this.state.name} onChange={(e) => {
-                            this.setState({name: e.target.value})
-                        }}/>
-                    </form>
+                    
                 </div>
             </div>
         )
