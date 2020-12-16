@@ -20,7 +20,7 @@ class App extends Component {
     async componentDidMount() {
         const response = await fetch('http://localhost:3001/bounties')
         const json = await response.json()
-        console.log(json)
+        this.setState({bounties: json.bounties})
     }
     
     render() {
@@ -29,7 +29,7 @@ class App extends Component {
                 <Nav />
                 <h1>App!</h1>
                 <Route exact path='/'>
-                    <Home />
+                    <Home bounties={this.state.bounties}/>
                 </Route>
                 <Route path='/show/:id'>
                     <Show />
